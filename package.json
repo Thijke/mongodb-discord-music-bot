@@ -21,7 +21,7 @@
     "music-bot",
     "mongodb"
   ],
-  "author": "el bkr (https://thijke.nl)",
+  "author": "thijke (https://thijke.nl)",
   "license": "MIT",
   "homepage": "https://github.com/thijke/mongodb-discord-music-bot#readme",
   "dependencies": {
