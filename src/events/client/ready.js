@@ -7,9 +7,7 @@ module.exports = class Ready extends Event {
     }
 
     async exec() {
-        this.client.user.setActivity("/play || by thijke#1234", {
-             type: "WATCHING",
-        });
+        this.client.user.setActivity("/play | coded by Thijke#1234", {type: ActivityType.Watching});
 
         let allMembers = new Set();
         this.client.guilds.cache.forEach((guild) => {
@@ -28,7 +26,7 @@ module.exports = class Ready extends Event {
             tag: "Ready",
         });
         this.client.logger.log(
-            `CREATED BY THIJKE#1234 KEEP CREDITS! If consider using this Bot, make sure to credit me!!`,
+            `Watching ${this.client.guilds.cache.size} servers | ${allMembers.size} members | ${allChannels.size} channels`,
             {
                 tag: "Data",
             }
@@ -38,7 +36,11 @@ module.exports = class Ready extends Event {
         if (guild) {
             await this.client.loadEmotes(guild).then(() => {
                 this.client.logger.log("Loaded emotes!", {tag: "Emotes"});
-            });
+            }).catch((err) => {
+                this.client.logger.error(`Couldn't load emotes\n${err.stack ? err + "\n\n" + err.stack : err}`, {
+                    tag: "Emotes",
+                })
+            })
         }
 
         for (const guild of this.client.guilds.cache.values()) {
